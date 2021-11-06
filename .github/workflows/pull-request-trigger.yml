@@ -1,9 +1,8 @@
 name: Pull Request Trigger
 on:
   pull_request:
-    types: [closed]
-    branches:
-      - 'gh-pages'
+    types: [opened, closed]
+
 
 jobs:
   Hello-World:
