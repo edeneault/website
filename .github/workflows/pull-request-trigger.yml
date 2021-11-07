@@ -3,7 +3,7 @@ on:
   pull_request:
     types: [opened, closed]
     branches:
-      - 'gha-pull-request-trigger-2395'
+      - 'gh-pages'
 
 jobs:
   Hello-World:
