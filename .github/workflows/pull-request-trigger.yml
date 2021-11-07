@@ -2,6 +2,7 @@ name: Pull Request Trigger
 on:
   pull_request:
     types: [opened, closed]
+    branches: [gh-pages]
     
 
 jobs:
