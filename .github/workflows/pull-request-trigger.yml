@@ -4,16 +4,18 @@ on:
     types: [opened, closed]
     branches: [gh-pages]
     
-
 jobs:
   Hello-World:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened'}}
     steps:
-<<<<<<< HEAD
-      - uses: actions/checkout@v2  
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-       
-      
-=======
      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
->>>>>>> 5605f5c19282703bcf2e243e51701a505c9d66fd
+  createCard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create or Update Project Card
+        uses: peter-evans/create-or-update-project-card@v1
+        with:
+          project-name: Project Board
+          column-name: PR Needs Review
+          issue-number: ${{ github.event.number }}
