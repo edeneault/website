@@ -9,7 +9,11 @@ jobs:
   Hello-World:
     runs-on: ubuntu-latest
     steps:
+<<<<<<< HEAD
       - uses: actions/checkout@v2  
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
        
       
+=======
+     - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+>>>>>>> 5605f5c19282703bcf2e243e51701a505c9d66fd
