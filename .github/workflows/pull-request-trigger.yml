@@ -36,7 +36,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           message: 'Error! This is a custom error'
-      - id: link-issues
-        uses: boneskull/more-linked-issues-action@v0.2.1
+      - name: Find Linked Issues
+        id: links
+        uses: hossainemruz/linked-issues@main
         with:
-          github-token: '${{ secrets.GITHUB_TOKEN }}'
+          pr_url: ${{github.event.pull_request.html_url}}
+          format: IssueNumber
+
+      - name: Output linked Issue list
+        run: echo "${{ steps.links.outputs.issues }}"
