@@ -30,7 +30,7 @@ jobs:
         with:
           message: 'Sucessfully added PR to "PR Needs Review" column'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: tkt-actions/add-issue-links@v1.6.0
+      - name: add Linked Issue
+        uses: alisalemmi/auto-link-issue@v1.0.0
         with:
-          repo-token: '${{ secrets.GITHUB_TOKEN }}' # required
-          branch-prefix: 'gh-pages' # required
+          github_token: ${{ secrets.GITHUB_TOKEN }}
