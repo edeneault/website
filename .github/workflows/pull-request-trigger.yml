@@ -30,7 +30,7 @@ jobs:
         with:
           message: 'Sucessfully added PR to "PR Needs Review" column'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: add Linked Issue
-        uses: alisalemmi/auto-link-issue@v1.0.0
+      - id: link-issues
+        uses: boneskull/more-linked-issues-action@v0.2.1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
