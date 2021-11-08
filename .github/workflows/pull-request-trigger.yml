@@ -30,7 +30,9 @@ jobs:
         with:
           message: 'Sucessfully added PR to "PR Needs Review" column'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - id: link-issues
-        uses: boneskull/more-linked-issues-action@v0.2.1
+      - name: Verify Linked Issue
+        uses: hattan/verify-linked-issue-action@v1.1.5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          github-token: '${{ secrets.GITHUB_TOKEN }}'
+          message: 'Error! This is a custom error'
