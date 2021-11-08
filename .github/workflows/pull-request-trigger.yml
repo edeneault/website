@@ -36,12 +36,19 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           message: 'Error! This is a custom error'
-      - name: Find Linked Issues
-        id: links
-        uses: hossainemruz/linked-issues@main
-        with:
-          pr_url: ${{github.event.pull_request.html_url}}
-          format: IssueNumber
 
-      - name: Output linked Issue list
-        run: echo "${{ steps.links.outputs.issues }}"
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Get Linked Issues Action
+        uses: kin/gh-action-get-linked-issues@v1.0
+        id: linked-issues
+        with:
+          # Required: personal access token with permissions to archive cards. This needs to be set in Settings -> Secrets with a token that has permissions for all repos the issues are linked in for cross-repo functionality
+          access-token: "${{ secrets.CROSS_REPO_TOKEN }}"
+
+      - name: Move Issues to Ready for Review Column
+        uses: kin/gh-action-move-issue-to-column@1.0
+        with:
+          access-token: "${{ secrets.CROSS_REPO_TOKEN }}"
+          target-column: "PR Needs Review"
+          issues: ${{ steps.linked-issues.outputs.issues }}
