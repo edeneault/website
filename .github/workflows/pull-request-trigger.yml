@@ -36,3 +36,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           message: 'Error! This is a custom error'
+      - id: link-issues
+        uses: boneskull/more-linked-issues-action@v0.2.1
+        with:
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
