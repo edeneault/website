@@ -46,9 +46,4 @@ jobs:
           # Required: personal access token with permissions to archive cards. This needs to be set in Settings -> Secrets with a token that has permissions for all repos the issues are linked in for cross-repo functionality
           access-token: "${{ secrets.CROSS_REPO_TOKEN }}"
 
-      - name: Move Issues to Ready for Review Column
-        uses: kin/gh-action-move-issue-to-column@1.0
-        with:
-          access-token: "${{ secrets.CROSS_REPO_TOKEN }}"
-          target-column: "PR Needs Review"
-          issues: ${{ steps.linked-issues.outputs.issues }}
+      
