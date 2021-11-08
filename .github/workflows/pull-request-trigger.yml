@@ -19,3 +19,5 @@ jobs:
           project-name: Project Board
           column-name: PR Needs Review
           issue-number: ${{ github.event.number }}
+      - name: Check output
+        run: echo ${{ steps.coupc.outputs.card-id }}
