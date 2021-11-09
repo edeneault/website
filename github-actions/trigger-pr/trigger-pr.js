@@ -13,7 +13,7 @@ var context;
  * @param {Object} c - context object
  * @returns - returns an object with the action's result, which is passed on to the next action
  */
-async function main({ g, c }) {
+async function main({ g, c }, columnId) {
   github = g;
   context = c;
 
