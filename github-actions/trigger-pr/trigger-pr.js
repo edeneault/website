@@ -13,11 +13,11 @@ var context;
  * @param {Object} c - context object
  * @returns - returns an object with the action's result, which is passed on to the next action
  */
-async function main({ g, c, co }) {
+async function main({ g, c }) {
   github = g;
   context = c;
-  core = co;
-  console.log(context.payload.issue.number, github, core);
+
+  console.log(context.payload.issue.number, github);
   // const issueNum = context.payload.issue.number
 
   // const labels = obtainLabels()
