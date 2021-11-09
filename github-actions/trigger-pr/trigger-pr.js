@@ -58,7 +58,7 @@ async function main({ g, c }, columnId) {
     }
   }
 
-  console.log(context.payload.issue.number, github);
+  // console.log(context.payload.issue.number, github);
   // const issueNum = context.payload.issue.number
 
   // const labels = obtainLabels()
