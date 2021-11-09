@@ -22,6 +22,9 @@ async function main({ g, c }) {
     console.log(item);
   }
 
+  const columns = await waitgithub.rest.projects.listColumns();
+  console.log(columns);
+
   const results = await github.rest.projects.createCard(
     (content_id = context.payload.number),
     (content_type = "PullRequest"),
