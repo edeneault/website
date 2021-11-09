@@ -17,6 +17,19 @@ async function main({ g, c }) {
   github = g;
   context = c;
 
+  // Retrieve all issue numbers from a column
+  const issueNums = getIssueNumsFromColumn(columnId);
+
+  for await (let issueNum of issueNums) {
+    // const timeline = getTimeline(issueNum);
+    // const assignees = await getAssignees(issueNum);
+    console.log(issueNum);
+    // Error catching.
+    // if (!assignees) {
+    //   console.log(`Assignee not found, skipping issue #${issueNum}`)
+    //   continue
+  }
+
   console.log(context.payload.issue.number, github);
   // const issueNum = context.payload.issue.number
 
