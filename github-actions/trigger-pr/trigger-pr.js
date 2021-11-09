@@ -25,13 +25,13 @@ async function main({ g, c }) {
   const columns = await github.rest.projects.listColumns();
   console.log(columns);
 
-  const results = await github.rest.projects.createCard(
-    (content_id = context.payload.number),
-    (content_type = "PullRequest"),
-    (column = "PR Needs Review"),
-    (project = "Project Board"),
-    (user = context.payload.repository.owner.login),
-  );
+  // const results = await github.rest.projects.createCard(
+  //   (content_id = context.payload.number),
+  //   (content_type = "PullRequest"),
+  //   (column = "PR Needs Review"),
+  //   (project = "Project Board"),
+  //   (user = context.payload.repository.owner.login),
+  // );
 }
 
 module.exports = main;
