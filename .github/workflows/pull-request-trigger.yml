@@ -20,10 +20,8 @@ jobs:
           column-name: PR Needs Review
           issue-number: ${{ github.event.number }}
       - name: Check output
-        run: echo ${{ steps.coupc.outputs.card-id }}
-      - name: Checkout
-        uses: actions/checkout@v2
-
+        run: echo ${{ steps }}
+      
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v1
         
