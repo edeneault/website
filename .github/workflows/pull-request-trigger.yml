@@ -45,6 +45,9 @@ jobs:
             const script = require('./github-actions/trigger-pr/trigger-pr.js');
             script({ g: github, c: context });
 
-  
+      - uses: kentaro-m/add-an-issue-reference-action@v2.0.0
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          branch-prefix: "website/"
 
       
