@@ -18,13 +18,13 @@ async function main({ g, c }) {
   context = c;
   console.log(context.payload.number, context.payload.repository.owner.login);
 
-  // const results = await github.projects.createCard(
-  //   content_id = context.payload.number,
-  //   content_type = "PullRequest",
-  //   column       = "PR Needs Review",
-  //   project      = "Project Board",
-  //   user = "ChadGoymer"
-  // )
+  const results = await github.projects.createCard(
+    (content_id = context.payload.number),
+    (content_type = "PullRequest"),
+    (column = "PR Needs Review"),
+    (project = "Project Board"),
+    (user = context.payload.repository.owner.login),
+  );
 }
 
 module.exports = main;
