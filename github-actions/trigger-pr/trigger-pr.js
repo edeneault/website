@@ -16,6 +16,7 @@ var context;
 async function main({ g, c }, columnId) {
   github = g;
   context = c;
+  console.log(columnId);
 
   // Retrieve all issue numbers from a column
   const issueNums = getIssueNumsFromColumn(columnId);
