@@ -38,6 +38,7 @@ jobs:
           IN_PROGRESS_COLUMN_ID: ${{ secrets.IN_PROGRESS_COLUMN_ID }}
         with:
           script: |
+            const { IN_PROGRESS_COLUMN_ID } = process.env;
             const script = require('./github-actions/trigger-pr/trigger-pr.js');
             script({ g: github, c: context }, IN_PROGRESS_COLUMN_ID);
 
