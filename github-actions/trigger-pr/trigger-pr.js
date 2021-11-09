@@ -31,3 +31,5 @@ async function main({ g, c }) {
   //   issueNum: issueNum
   // }
 }
+
+module.exports = main;
