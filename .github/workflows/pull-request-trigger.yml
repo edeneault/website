@@ -5,13 +5,9 @@ on:
     branches: [gh-pages]
     
 jobs:
-  Hello-World:
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' || github.event.action == 'reopened'}}
-    steps:
-     - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
   createCard:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' || github.event.action == 'reopened'}}
     steps:
       - name: Create or Update Project Card
         uses: peter-evans/create-or-update-project-card@v1
@@ -45,9 +41,6 @@ jobs:
             const script = require('./github-actions/trigger-pr/trigger-pr.js');
             script({ g: github, c: context });
 
-      - uses: kentaro-m/add-an-issue-reference-action@v2.0.0
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          branch-prefix: "/"
+   
 
       
