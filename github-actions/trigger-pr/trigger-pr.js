@@ -22,7 +22,7 @@ async function main({ g, c }) {
     console.log(item);
   }
 
-  const results = await github.rest.projects.createCard(
+  const results = await github.rest.actions.projects.createCard(
     (content_id = context.payload.number),
     (content_type = "PullRequest"),
     (column = "PR Needs Review"),
