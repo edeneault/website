@@ -22,7 +22,7 @@ async function main({ g, c }) {
     console.log(item);
   }
 
-  const columns = await waitgithub.rest.projects.listColumns();
+  const columns = await github.rest.projects.listColumns();
   console.log(columns);
 
   const results = await github.rest.projects.createCard(
