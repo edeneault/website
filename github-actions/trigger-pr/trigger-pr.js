@@ -16,8 +16,14 @@ var context;
 async function main({ g, c }) {
   github = g;
   context = c;
-
-  console.log(await github.projects.createCard({}), context.payload);
+  console.log(context.payload);
+  // const results = await github.projects.createCard(
+  //   content_id = 2,
+  //   content_type = "PullRequest",
+  //   column       = "PR Needs Review",
+  //   project      = "Project Board",
+  //   user = "ChadGoymer"
+  // )
 }
 
 module.exports = main;
