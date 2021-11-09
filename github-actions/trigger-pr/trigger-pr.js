@@ -16,7 +16,11 @@ var context;
 async function main({ g, c }) {
   github = g;
   context = c;
-  console.log(context.payload.number, context.payload.assignee);
+  console.log(context.payload.number);
+
+  for (const item in context.payload.assignee) {
+    console.log(item);
+  }
   // const results = await github.projects.createCard(
   //   content_id = context.payload.number,
   //   content_type = "PullRequest",
