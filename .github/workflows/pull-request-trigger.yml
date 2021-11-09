@@ -13,7 +13,7 @@ jobs:
         uses: peter-evans/create-or-update-project-card@v1
         with:
           project-name: Project Board
-          column-name: PR Needs Review
+          column-name: PR Needs review (Automated Column, do not place items here manually)
           issue-number: ${{ github.event.number }}
 
       - name: Check output
