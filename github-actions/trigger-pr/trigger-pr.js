@@ -30,6 +30,34 @@ async function main({ g, c }) {
     //   continue
   }
 
+  async function* getIssueNumsFromColumn(columnId) {
+    let page = 1;
+    while (page < 100) {
+      try {
+        const results = await github.projects.listCards({
+          column_id: columnId,
+          per_page: 100,
+          page: page,
+        });
+
+        if (results.data.length) {
+          for (let card of results.data) {
+            if (card.hasOwnProperty("content_url")) {
+              const arr = card.content_url.split("/");
+              yield arr.pop();
+            }
+          }
+        } else {
+          return;
+        }
+      } catch {
+        continue;
+      } finally {
+        page++;
+      }
+    }
+  }
+
   console.log(context.payload.issue.number, github);
   // const issueNum = context.payload.issue.number
 
