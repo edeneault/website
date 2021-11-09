@@ -16,9 +16,9 @@ var context;
 async function main({ g, c }) {
   github = g;
   context = c;
-  console.log(context.payload.number);
+  console.log(context.payload);
   // const results = await github.projects.createCard(
-  //   content_id = 2,
+  //   content_id = context.payload.number,
   //   content_type = "PullRequest",
   //   column       = "PR Needs Review",
   //   project      = "Project Board",
