@@ -30,7 +30,6 @@ async function main({ g, c }) {
     content_type: "PullRequest",
     column_id: 16743228,
     project: "Project Board",
-    user: context.payload.repository.owner.login,
   });
 }
 
