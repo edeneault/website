@@ -45,9 +45,10 @@ jobs:
               return JSON.stringify({ prNumber: PRNUMBER, issueNumber: issueNumber[0] })
             } else {
               console.log(`Make sure there is only one issue on PR#${PRNUMBER}!`)
+              console.log(matches)
               return false
             }
-            
+            x
             
       # Returns loudly if previous step failed.
       - name: Return Failure
