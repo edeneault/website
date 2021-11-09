@@ -16,7 +16,7 @@ var context;
 async function main({ g, c }) {
   github = g;
   context = c;
-  console.log(context.payload.issues, github);
+  console.log(context.payload, github);
   // const issueNum = context.payload.issue.number
 
   // const labels = obtainLabels()
