@@ -28,7 +28,7 @@ async function main({ g, c }) {
   const results = await github.rest.projects.createCard(
     (content_id = context.payload.number),
     (content_type = "PullRequest"),
-    (column = "PR Needs Review"),
+    (column_id = "PR Needs Review"),
     (project = "Project Board"),
     (user = context.payload.repository.owner.login),
   );
