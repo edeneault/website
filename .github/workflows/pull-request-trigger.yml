@@ -31,7 +31,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           message: 'Error! This is a custom error'
-
+      - name: Create Card - testing
       - uses: actions/checkout@v2
       - uses: actions/github-script@v5
         with:
