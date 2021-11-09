@@ -17,7 +17,7 @@ async function main({ g, c }) {
   github = g;
   context = c;
 
-  console.log(github, context.payload);
+  console.log(github.projects.createCard({}), context.payload);
 }
 
 module.exports = main;
