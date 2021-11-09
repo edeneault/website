@@ -20,7 +20,7 @@ jobs:
           column-name: PR Needs Review
           issue-number: ${{ github.event.number }}
       - name: Check output
-        run: echo ${{ steps }}
+        run: echo ${{ steps.coupc.outputs.card-id }}
       
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v1
@@ -35,13 +35,58 @@ jobs:
         with:
           message: 'Error! This is a custom error'
 
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Get Linked Issues Action
-        uses: kin/gh-action-get-linked-issues@v1.0
-        id: linked-issues
+      # - name: Checkout
+      #   uses: actions/checkout@v2
+      # - name: Get Linked Issues Action
+      #   uses: kin/gh-action-get-linked-issues@v1.0
+      #   id: linked-issues
+      #   with:
+      #     # Required: personal access token with permissions to archive cards. This needs to be set in Settings -> Secrets with a token that has permissions for all repos the issues are linked in for cross-repo functionality
+      #     access-token: "${{ secrets.CROSS_REPO_TOKEN }}"
+
+      - name: Retrieve Linked Issue From Comment
+        # https://github.com/actions/github-script
+        uses: actions/github-script@v4
+        # Escapes user input for injection attacks
+        env:
+          BODY: ${{ github.event.pull_request.body }}
+          PRNUMBER: ${{ github.event.number }}
+        # Variable that stores result of script
+        id: linked-issue-result
         with:
-          # Required: personal access token with permissions to archive cards. This needs to be set in Settings -> Secrets with a token that has permissions for all repos the issues are linked in for cross-repo functionality
-          access-token: "${{ secrets.CROSS_REPO_TOKEN }}"
+          script: |
+            // Retrieve pull request body and pull request number
+            const { BODY, PRNUMBER } = process.env
+            
+            // Create RegEx for capturing KEYWORD #ISSUE-NUMBER syntax (i.e. resolves #1234)
+            const KEYWORDS = ['close', 'closes', 'closed', 'fix', 'fixes', 'fixed', 'resolve', 'resolves', 'resolved']
+            let reArr = []
+            for (const word of KEYWORDS) {
+              reArr.push(`[\\n|\\s|^]${word} #\\d*\\s|^${word} #\\d*\\s|\\s${word} #\\d*$|^${word} #\\d*$`)
+            }
+            
+            // Receive and unpack matches into an Array of Array objs
+            let re = new RegExp(reArr.join('|'), 'gi')
+            let matches = BODY.matchAll(re)
+            matches = [...matches]
+            
+            // If only one match is found, return the issue number. Else return false. Also console.log results.
+            if (matches.length == 1) {
+              const issueNumber = matches[0][0].match(/\d+/)
+              console.log(`Issue number found for PR #${PRNUMBER}. Issue #${issueNumber}`)
+              return JSON.stringify({ prNumber: PRNUMBER, issueNumber: issueNumber[0] })
+            } else {
+              console.log(`Make sure there is only one issue on PR#${PRNUMBER}!`)
+              console.log(matches)
+              return false
+            }
+            x
+            
+      # Returns loudly if previous step failed.
+      - name: Return Failure
+        if: steps.linked-issue-result.outputs.result == 'false'
+        run: |
+          echo "Please expand above outputs for errors."
+          exit 1
 
       
