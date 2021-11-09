@@ -17,7 +17,7 @@ async function main({ g, c }) {
   github = g;
   context = c;
   console.log(context.payload.number, context.payload.repository.owner.login);
-  // console.log(github);
+  console.log(github);
   for (const item in github.rest) {
     console.log(item);
   }
