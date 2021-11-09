@@ -18,7 +18,7 @@ async function main({ g, c }) {
   context = c;
   console.log(context.payload.number);
 
-  for (const item in context.payload.assignee) {
+  for (const item in context.payload) {
     console.log(item);
   }
   // const results = await github.projects.createCard(
